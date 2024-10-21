@@ -34,6 +34,7 @@ use bevy_picking_core::backend::prelude::*;
 
 // Re-export for users who want this
 pub use avian3d;
+use bevy_math::Vec3;
 
 /// Commonly used imports.
 pub mod prelude {
@@ -96,9 +97,9 @@ pub fn update_hits(
 
         if let Some((entity, hit_data)) = spatial_query
             .cast_ray_predicate(
-                ray.origin,
+                ray.origin.into(),
                 ray.direction,
-                f32::MAX,
+                f32::MAX.into(),
                 true,
                 SpatialQueryFilter::default(),
                 &|entity| {
@@ -120,9 +121,9 @@ pub fn update_hits(
             .map(|ray_hit_data| {
                 let hit_data = HitData::new(
                     ray_id.camera,
-                    ray_hit_data.time_of_impact,
-                    Some(ray.origin + (ray.direction * ray_hit_data.time_of_impact)),
-                    Some(ray_hit_data.normal),
+                    ray_hit_data.time_of_impact as f32,
+                    Some(ray.origin + (ray.direction * ray_hit_data.time_of_impact as f32)),
+                    Some(Vec3::new(ray_hit_data.normal.x as f32, ray_hit_data.normal.y as f32, ray_hit_data.normal.z as f32)),
                 );
                 (ray_hit_data.entity, hit_data)
             })

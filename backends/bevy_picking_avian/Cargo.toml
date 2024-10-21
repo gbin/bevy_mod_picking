@@ -22,6 +22,11 @@ bevy_transform = { version = "0.14.0", default-features = false }
 bevy_utils = { version = "0.14.0", default-features = false }
 bevy_window = { version = "0.14.0", default-features = false }
 
-avian3d = "0.1"
-# Local
+avian3d = { version="0.1", default-features=false, features = ["3d", "bevy_scene", "collider-from-mesh", "debug-plugin", "parallel", "f64", "parry-f64"]}
+
 bevy_picking_core = { path = "../../crates/bevy_picking_core", version = "0.20.0" }
+
+[features]
+default = ["f64"]
+f32 = []
+f64 = []
