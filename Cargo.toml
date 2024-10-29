@@ -1,11 +1,11 @@
 [package]
-name = "bevy_mod_picking"
-version = "0.20.1"
-authors = ["Aevyrie <aevyrie@gmail.com>"]
+name = "bevy_mod_picking_f64"
+version = "0.20.2"
+authors = ["Aevyrie <aevyrie@gmail.com>", "Gbin <gbin@copper-robotics.com"]
 edition = "2021"
 license = "MIT OR Apache-2.0"
-description = "A modular picking plugin for Bevy."
-repository = "https://github.com/aevyrie/bevy_mod_picking/"
+description = "Fork of the modular picking plugin for Bevy. Patched for f64 support (please do not bug the original author with issues from this fork)."
+repository = "https://github.com/copper-project/bevy_mod_picking_f64/"
 keywords = ["gamedev", "picking", "bevy", "input", "eventlistener"]
 categories = ["game-engines", "rendering"]
 resolver = "2"
@@ -18,44 +18,45 @@ all-features = true
 members = ["crates/*", "backends/*"]
 
 [dependencies]
-bevy_app = { version = "0.14.0", default-features = false }
-bevy_core = { version = "0.14.0", default-features = false }
-bevy_core_pipeline = { version = "0.14.0", optional = true, default-features = false }
-bevy_ecs = { version = "0.14.0", default-features = false }
-bevy_math = { version = "0.14.0", default-features = false }
-bevy_reflect = { version = "0.14.0", default-features = false }
-bevy_render = { version = "0.14.0", default-features = false }
-bevy_text = { version = "0.14.0", optional = true, default-features = false, features = [
+bevy_app = { version = "0.14.2", default-features = false }
+bevy_core = { version = "0.14.2", default-features = false }
+bevy_core_pipeline = { version = "0.14.2", optional = true, default-features = false }
+bevy_ecs = { version = "0.14.2", default-features = false }
+bevy_math = { version = "0.14.2", default-features = false }
+bevy_reflect = { version = "0.14.2", default-features = false }
+bevy_render = { version = "0.14.2", default-features = false }
+bevy_text = { version = "0.14.2", optional = true, default-features = false, features = [
     "default_font",
 ] }
-bevy_utils = { version = "0.14.0", default-features = false }
-bevy_window = { version = "0.14.0", default-features = false }
+bevy_utils = { version = "0.14.2", default-features = false }
+bevy_window = { version = "0.14.2", default-features = false }
 
 # Optional
-bevy_color = { version = "0.14.0", optional = true, default-features = false }
-bevy_ui = { version = "0.14.0", optional = true, default-features = false }
+bevy_color = { version = "0.14.3", optional = true, default-features = false }
+bevy_ui = { version = "0.14.2", optional = true, default-features = false }
 
 bevy_eventlistener = "0.8.0"
 bevy_egui = { optional = true, version = "0.28.0" }          # >=0.28,  <=0.XX
 bevy_rapier3d = { optional = true, version = "0.27.0-rc.1" }
 bevy_xpbd_3d = { optional = true, version = "0.5.0" }
+
+# Gbin: this is a the main change vs mainline
 avian3d = { optional = true, version="0.1", default-features=false, features = ["3d", "bevy_scene", "collider-from-mesh", "debug-plugin", "parallel", "f64", "parry-f64"]}
 
-# Local
-bevy_picking_core = { path = "crates/bevy_picking_core", version = "0.20.0" }
-bevy_picking_input = { path = "crates/bevy_picking_input", version = "0.20.0" }
-bevy_picking_selection = { optional = true, path = "crates/bevy_picking_selection", version = "0.20.0" }
-bevy_picking_highlight = { optional = true, path = "crates/bevy_picking_highlight", version = "0.20.0" }
-bevy_picking_raycast = { optional = true, path = "backends/bevy_picking_raycast", version = "0.20.0" }
-bevy_picking_ui = { optional = true, path = "backends/bevy_picking_ui", version = "0.20.0" }
-bevy_picking_rapier = { optional = true, path = "backends/bevy_picking_rapier", version = "0.20.0" }
-bevy_picking_sprite = { optional = true, path = "backends/bevy_picking_sprite", version = "0.20.0" }
-bevy_picking_egui = { optional = true, path = "backends/bevy_picking_egui", version = "0.20.0" }
-bevy_picking_xpbd = { optional = true, path = "backends/bevy_picking_xpbd", version = "0.20.0" }
-bevy_picking_avian = { optional = true, path = "backends/bevy_picking_avian", version = "0.20.0" }
+bevy_picking_core = { version = "0.20.0" }
+bevy_picking_input = {  version = "0.20.0" }
+bevy_picking_selection = { optional = true, version = "0.20.0" }
+bevy_picking_highlight = { optional = true, version = "0.20.0" }
+bevy_picking_raycast = { optional = true, version = "0.20.0" }
+bevy_picking_ui = { optional = true, version = "0.20.0" }
+bevy_picking_rapier = { optional = true, version = "0.20.0" }
+bevy_picking_sprite = { optional = true, version = "0.20.0" }
+bevy_picking_egui = { optional = true, version = "0.20.0" }
+bevy_picking_xpbd = { optional = true, version = "0.20.0" }
+bevy_picking_avian = { optional = true, version = "0.20.0" }
 
 [dev-dependencies]
-bevy = { version = "0.14.0", default-features = false, features = [
+bevy = { version = "0.14.2", default-features = false, features = [
     "bevy_winit",
     "x11",
     "bevy_gltf",
